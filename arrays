@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+int main() {
+    int arrayzao[12], array1[12], array2[12];
+    int i, c1 = 0, c2 = 0;
+
+    for(i = 0; i < 12; i++) {
+        printf("Digite o valor %d: ", i + 1);
+        scanf("%d", &arrayzao[i]);
+    }
+
+    for(i = 0; i < 12; i++) {
+        if(arrayzao[i] > 0) {
+            array1[c1] = arrayzao[i];
+            c1++;
+        } else if(arrayzao[i] < 0) {
+            array2[c2] = arrayzao[i];
+            c2++;
+        }
+    }
+
+    printf("\nArray1 (positivos): ");
+    for(i = 0; i < c1; i++) {
+        printf("%d ", array1[i]);
+    }
+    printf("\nQuantidade em array1: %d", c1);
+
+    printf("\n\nArray2 (negativos): ");
+    for(i = 0; i < c2; i++) {
+        printf("%d ", array2[i]);
+    }
+    printf("\nQuantidade em array2: %d\n", c2);
+
+    return 0;
+}
