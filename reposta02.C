@@ -1,0 +1,72 @@
+#include <stdio.h>
+
+int main() {
+
+    int CaixaSuperRapido[10], CaixaRapido[10], CaixaNormal[10];
+    int i, produto;
+
+   
+    int indiceSuperRapido = 0;
+    int indiceRapido = 0;
+    int indiceNormal = 0;
+
+  
+    for(i = 0; i < 10; i++) {
+        printf("Digite a quantidade de compras do cliente %d: ", i + 1);
+        scanf("%d", &produto);
+
+        
+        if(produto <= 0) {
+            printf("Quantidade inválida!\n");
+        }
+        
+        else if(produto <= 5) {
+            if(indiceSuperRapido < 10) {
+                CaixaSuperRapido[indiceSuperRapido] = produto;
+                indiceSuperRapido++;
+                printf("Seu caixa é: Super Rápido\n");
+            } else {
+                printf("Caixa Super Rápido cheia!\n");
+            }
+        }
+       
+        else if(produto <= 20) {
+            if(indiceRapido < 10) {
+                CaixaRapido[indiceRapido] = produto;
+                indiceRapido++;
+                printf("Seu caixa é: Rápido\n");
+            } else {
+                printf("Caixa Rápido cheia!\n");
+            }
+        }
+       
+        else {
+            if(indiceNormal < 10) {
+                CaixaNormal[indiceNormal] = produto;
+                indiceNormal++;
+                printf("Seu caixa é: Normal\n");
+            } else {
+                printf("Caixa Normal cheia!\n");
+            }
+        }
+    }
+
+    printf("\nFila do Caixa Super Rápido: ");
+    for(i = 0; i < indiceSuperRapido; i++) {
+        printf("%d ", CaixaSuperRapido[i]);
+    }
+
+    printf("\nFila do Caixa Rápido: ");
+    for(i = 0; i < indiceRapido; i++) {
+        printf("%d ", CaixaRapido[i]);
+    }
+
+    printf("\nFila do Caixa Normal: ");
+    for(i = 0; i < indiceNormal; i++) {
+        printf("%d ", CaixaNormal[i]);
+    }
+
+    printf("\n");
+    return 0;
+}
+
