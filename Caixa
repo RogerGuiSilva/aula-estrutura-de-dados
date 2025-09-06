@@ -17,16 +17,16 @@ int main() {
 
         
         if(produto <= 0) {
-            printf("Quantidade inválida!\n");
+            printf("Quantidade invÃ¡lida!\n");
         }
         
         else if(produto <= 5) {
             if(indiceSuperRapido < 10) {
                 CaixaSuperRapido[indiceSuperRapido] = produto;
                 indiceSuperRapido++;
-                printf("Seu caixa é: Super Rápido\n");
+                printf("Seu caixa Ã©: Super RÃ¡pido\n");
             } else {
-                printf("Caixa Super Rápido cheia!\n");
+                printf("Caixa Super RÃ¡pido cheia!\n");
             }
         }
        
@@ -34,9 +34,9 @@ int main() {
             if(indiceRapido < 10) {
                 CaixaRapido[indiceRapido] = produto;
                 indiceRapido++;
-                printf("Seu caixa é: Rápido\n");
+                printf("Seu caixa Ã©: RÃ¡pido\n");
             } else {
-                printf("Caixa Rápido cheia!\n");
+                printf("Caixa RÃ¡pido cheia!\n");
             }
         }
        
@@ -44,19 +44,19 @@ int main() {
             if(indiceNormal < 10) {
                 CaixaNormal[indiceNormal] = produto;
                 indiceNormal++;
-                printf("Seu caixa é: Normal\n");
+                printf("Seu caixa Ã©: Normal\n");
             } else {
                 printf("Caixa Normal cheia!\n");
             }
         }
     }
 
-    printf("\nFila do Caixa Super Rápido: ");
+    printf("\nFila do Caixa Super RÃ¡pido: ");
     for(i = 0; i < indiceSuperRapido; i++) {
         printf("%d ", CaixaSuperRapido[i]);
     }
 
-    printf("\nFila do Caixa Rápido: ");
+    printf("\nFila do Caixa RÃ¡pido: ");
     for(i = 0; i < indiceRapido; i++) {
         printf("%d ", CaixaRapido[i]);
     }
