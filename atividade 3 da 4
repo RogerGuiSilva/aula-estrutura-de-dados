@@ -1,0 +1,66 @@
+// Roger
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define JOGADORES 35
+#define CRITERIOS 5
+#define CAMPEONATOS 2
+
+int main() {
+    char jogadores[JOGADORES][50];
+    char criterios[CRITERIOS][40] = {
+        "Gols Marcados",
+        "Passes Certos",
+        "Passes Errados",
+        "Desarmes",
+        "Assistencias"
+    };
+    int desempenho[JOGADORES][CRITERIOS][CAMPEONATOS];
+    char nomesCampeonatos[CAMPEONATOS][100] = {
+        "Campeonato Brasileiro",
+        "Copa do Brasil"
+    };
+
+    int jog, cri, cam;
+
+    // Entrada dos nomes dos jogadores
+    for (jog = 0; jog < JOGADORES; jog++) {
+        printf("Nome do jogador %d: ", jog + 1);
+        fgets(jogadores[jog], sizeof(jogadores[jog]), stdin);
+        jogadores[jog][strcspn(jogadores[jog], "\n")] = '\0';
+    }
+
+    // Entrada de desempenho
+    for (cam = 0; cam < CAMPEONATOS; cam++) {
+        printf("\n=== %s ===\n", nomesCampeonatos[cam]);
+        for (jog = 0; jog < JOGADORES; jog++) {
+            printf("\nJogador: %s\n", jogadores[jog]);
+            for (cri = 0; cri < CRITERIOS; cri++) {
+                printf("%s: ", criterios[cri]);
+                scanf("%d", &desempenho[jog][cri][cam]);
+            }
+        }
+    }
+
+    // Relatório final
+    for (cam = 0; cam < CAMPEONATOS; cam++) {
+        printf("\n\n===== RELATORIO - %s =====\n", nomesCampeonatos[cam]);
+        printf("%-20s", "Jogador");
+        for (cri = 0; cri < CRITERIOS; cri++) {
+            printf("%-15s", criterios[cri]);
+        }
+        printf("\n");
+
+        for (jog = 0; jog < JOGADORES; jog++) {
+            printf("%-20s", jogadores[jog]);
+            for (cri = 0; cri < CRITERIOS; cri++) {
+                printf("%-15d", desempenho[jog][cri][cam]);
+            }
+            printf("\n");
+        }
+    }
+
+    return 0;
+}
