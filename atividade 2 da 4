@@ -1,0 +1,92 @@
+// Trabalho04_2.c - Nome: SEU_NOME - RA: SEU_RA
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
+
+#define ALUNOS 35
+#define DISCIPLINAS 6
+
+int main() {
+    char alunos[ALUNOS][50];
+    char disciplinas[DISCIPLINAS][40];
+    float boletim[ALUNOS + 1][DISCIPLINAS + 1];
+    int linha, coluna;
+
+    for (linha = 0; linha < ALUNOS; linha++) {
+        printf("Nome do aluno %d: ", linha + 1);
+        fgets(alunos[linha], sizeof(alunos[linha]), stdin);
+        alunos[linha][strcspn(alunos[linha], "\n")] = '\0';
+    }
+
+    for (coluna = 0; coluna < DISCIPLINAS; coluna++) {
+        bool repetido;
+        do {
+            repetido = false;
+            printf("Nome da disciplina %d: ", coluna + 1);
+            fgets(disciplinas[coluna], sizeof(disciplinas[coluna]), stdin);
+            disciplinas[coluna][strcspn(disciplinas[coluna], "\n")] = '\0';
+            for (int j = 0; j < coluna; j++) {
+                if (strcmp(disciplinas[coluna], disciplinas[j]) == 0) {
+                    printf("Disciplina repetida! Digite outro nome.\n");
+                    repetido = true;
+                    break;
+                }
+            }
+        } while (repetido);
+    }
+
+    for (linha = 0; linha < ALUNOS; linha++) {
+        printf("\nAluno: %s\n", alunos[linha]);
+        for (coluna = 0; coluna < DISCIPLINAS; coluna++) {
+            printf("Nota em %s: ", disciplinas[coluna]);
+            scanf("%f", &boletim[linha][coluna]);
+        }
+    }
+
+    for (linha = 0; linha < ALUNOS; linha++) {
+        float soma = 0;
+        for (coluna = 0; coluna < DISCIPLINAS; coluna++) {
+            soma += boletim[linha][coluna];
+        }
+        boletim[linha][DISCIPLINAS] = soma / DISCIPLINAS;
+    }
+
+    for (coluna = 0; coluna < DISCIPLINAS; coluna++) {
+        float soma = 0;
+        for (linha = 0; linha < ALUNOS; linha++) {
+            soma += boletim[linha][coluna];
+        }
+        boletim[ALUNOS][coluna] = soma / ALUNOS;
+    }
+
+    float soma = 0;
+    for (linha = 0; linha < ALUNOS; linha++) {
+        soma += boletim[linha][DISCIPLINAS];
+    }
+    boletim[ALUNOS][DISCIPLINAS] = soma / ALUNOS;
+
+    printf("\n\n===== BOLETIM FINAL =====\n\n");
+    printf("%-20s", "Aluno");
+    for (coluna = 0; coluna < DISCIPLINAS; coluna++) {
+        printf("%-15s", disciplinas[coluna]);
+    }
+    printf("%-10s\n", "Media");
+
+    for (linha = 0; linha < ALUNOS; linha++) {
+        printf("%-20s", alunos[linha]);
+        for (coluna = 0; coluna <= DISCIPLINAS; coluna++) {
+            printf("%-15.2f", boletim[linha][coluna]);
+        }
+        printf("\n");
+    }
+
+    printf("%-20s", "Medias");
+    for (coluna = 0; coluna <= DISCIPLINAS; coluna++) {
+        printf("%-15.2f", boletim[ALUNOS][coluna]);
+    }
+    printf("\n");
+
+    return 0;
+}
